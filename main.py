@@ -1,4 +1,4 @@
-from database import db  # ou o caminho correto até seu db.py
+#from database import db  # ou o caminho correto até seu db.py
 
 #def testar_conexao():
  #   try:
