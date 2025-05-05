@@ -1,5 +1,5 @@
 class usuario:
-    def __init__(self, id, nome, email, whatsapp, senha, rua, numero, complemento, cep, ponto_referencia):
+    def __init__(self, id=None, nome=None, email=None, whatsapp=None, senha=None, rua=None, numero=None, complemento=None, cep=None, ponto_referencia=None):
         self.id = id
         self.nome = nome
         self.email = email
