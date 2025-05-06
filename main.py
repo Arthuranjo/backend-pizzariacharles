@@ -14,3 +14,13 @@
 
 # Executa o teste ao iniciar
 #testar_conexao()
+
+from fastapi import FastAPI
+from routes import usuario_routes
+from fastapi.staticfiles import StaticFiles
+
+app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+app.include_router(usuario_routes.router)

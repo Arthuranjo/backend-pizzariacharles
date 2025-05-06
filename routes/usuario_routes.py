@@ -1,0 +1,70 @@
+from fastapi import APIRouter, Request, Form
+from fastapi.responses import RedirectResponse, HTMLResponse
+from fastapi.templating import Jinja2Templates
+from controllers import usuario_controller
+from models.usuario_model import usuario
+
+router = APIRouter()
+templates = Jinja2Templates(directory="templates")
+
+
+@router.get("/cadastro", response_class=HTMLResponse)
+def exibir_cadastro(request: Request):
+    return templates.TemplateResponse("cadastro.html", {"request": request})
+
+@router.post("/cadastro")
+def cadastrar_usuario(
+    request: Request,
+    nome: str = Form(...),
+    email: str = Form(...),
+    whatsapp: str = Form(...),
+    senha: str = Form(...),
+    rua: str = Form(...),
+    numero: str = Form(...),
+    complemento: str = Form(None),
+    cep: str = Form(...),
+    ponto: str = Form(None)
+):
+    usuario = usuario(
+        nome=nome,
+        email=email,
+        whatsapp=whatsapp,
+        senha=senha,
+        rua=rua,
+        numero=numero,
+        complemento=complemento,
+        cep=cep,
+        ponto_referencia=ponto
+    )
+    usuario_controller.cadastrar_usuario(usuario)
+    return RedirectResponse(url="/login", status_code=303)
+
+
+@router.get("/login", response_class=HTMLResponse)
+def exibir_login(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+
+@router.post("/login")
+def exibir_login(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+
+@router.post("/login")
+def processar_login(
+    request: Request,
+    email: str = Form(...),
+    senha: str = Form(...)
+):
+    usuario = usuario_controller.autenticar_usuario(email, senha)
+    if usuario:
+        return RedirectResponse(url="meus-pedidos", status_code=303)
+    return templates.TemplateResponse("login.html", {
+        "request": request,
+        "erro": "email ou senha invalidos"
+    })
+
+
+@router.get("/meus-pedidos", response_class=HTMLResponse)
+def meus_pedidos(request: Request):
+    return templates.TemplateResponse("meus_pedidos.html", {"request": request})
