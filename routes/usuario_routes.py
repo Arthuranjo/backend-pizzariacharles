@@ -68,3 +68,23 @@ def processar_login(
 @router.get("/meus-pedidos", response_class=HTMLResponse)
 def meus_pedidos(request: Request):
     return templates.TemplateResponse("meus_pedidos.html", {"request": request})
+
+
+@router.get("/", response_class=HTMLResponse)
+async def read_index(request: Request):
+    return templates.TemplateResponse("main.html", {"request": request})
+
+
+@router.get("/login", response_class=HTMLResponse)
+def login_page(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+@router.get("/cadastro", response_class=HTMLResponse)
+def cadastro_page(request: Request):
+    return templates.TemplateResponse("cadastro.html", {"request": request})
+
+
+@router.get("/pedidos", response_class=HTMLResponse)
+def pedidos_page(request: Request):
+    return templates.TemplateResponse("pedidos.html", {"request": request})
+
