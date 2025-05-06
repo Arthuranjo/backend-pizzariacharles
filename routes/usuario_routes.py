@@ -41,7 +41,7 @@ def cadastrar_usuario(
 
 
 @router.post("/login")
-def processar_login(
+async def processar_login(
     request: Request,
     email: str = Form(...),
     senha: str = Form(...)
@@ -77,4 +77,5 @@ def cadastro_page(request: Request):
 @router.get("/pedidos", response_class=HTMLResponse)
 def pedidos_page(request: Request):
     return templates.TemplateResponse("pedidos.html", {"request": request})
+
 
