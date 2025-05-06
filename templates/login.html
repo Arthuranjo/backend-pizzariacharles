@@ -30,6 +30,14 @@
     </nav>
     <div class="formulario">
         <h1>FAÇA SEU LOGIN</h1>
+
+        {% if mensagem_erro %}
+        <div class="erro-box" id="erroBox">
+            <p>{{ mensagem_erro }}</p>
+            <button type="button" onclick="fecharErro()">OK</button>
+        </div>
+        {% endif %}
+        
         <form action="/login" method="post">
            <label for="email">E-MAIL</label> 
            <input type="text" id="email" name="email" required>

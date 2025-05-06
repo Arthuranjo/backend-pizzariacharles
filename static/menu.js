@@ -13,3 +13,14 @@ closeButton.addEventListener('click', function(event) {
   event.preventDefault(); 
   menuOverlay.style.display = 'none'; 
 });
+
+//mensagem de erro no login
+function fecharErro() {
+  const box = document.getElementById("erroBox");
+  if (box) {
+      box.style.display = "none";
+  }
+  // Limpa os campos
+  document.getElementById("email").value = '';
+  document.getElementById("senha").value = '';
+}

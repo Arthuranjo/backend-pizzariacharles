@@ -49,7 +49,7 @@ def autenticar_usuario(email: str, senha: str):
         if usuario:
             return usuario
         else:
-            raise HTTPException(status_code=401, detail="Email ou senha incorretos")
+            return None
     finally:
         cursor.close()
         conn.close()

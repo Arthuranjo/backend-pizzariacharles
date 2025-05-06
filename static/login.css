@@ -117,3 +117,24 @@ footer{
 .menu-list li a:hover {
     background-color: #1a91a8;
 }
+
+/*estilização da mensagem de erro do login*/
+.erro-box {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 16px;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.erro-box button {
+    margin-top: 10px;
+    background-color: #f5c6cb;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: #721c24;
+    font-weight: bold;
+    border-radius: 4px;
+}

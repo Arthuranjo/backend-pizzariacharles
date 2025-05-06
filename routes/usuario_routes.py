@@ -41,18 +41,19 @@ def cadastrar_usuario(
 
 
 @router.post("/login")
-async def processar_login(
+async def login(
     request: Request,
     email: str = Form(...),
     senha: str = Form(...)
 ):
     usuario = usuario_controller.autenticar_usuario(email, senha)
     if usuario:
-        return RedirectResponse(url="meus-pedidos", status_code=303)
-    return templates.TemplateResponse("login.html", {
-        "request": request,
-        "erro": "email ou senha invalidos"
-    })
+        return RedirectResponse(url="/meus-pedidos", status_code=303)
+    else:
+        return templates.TemplateResponse("login.html", {
+            "request": request,
+            "mensagem_erro": "email ou senha invalidos"
+        },status_code=200)
 
 
 @router.get("/meus-pedidos", response_class=HTMLResponse)
